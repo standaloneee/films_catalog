@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.standalone.films_catalog.dto.AbobaDto;
 import ru.standalone.films_catalog.dto.BibaDto;
+import ru.standalone.films_catalog.entity.Biba;
 import ru.standalone.films_catalog.service.AbobaService;
 import ru.standalone.films_catalog.service.BibaService;
 
@@ -22,14 +23,14 @@ public class BibaController {
     }
 
     @PostMapping("sendBibas")
-    public String getBiba(@RequestBody BibaDto newBibaDto) {
+    public String getBiba(@RequestBody Biba newBibaDto) {
 
         bibish.addBiba(newBibaDto);
         return "success";
     }
 
     @GetMapping("getBibas")
-    public List<BibaDto> returnAboba(){
+    public List<Biba> returnAboba(){
         return bibish.returnBiba();
     }
 }

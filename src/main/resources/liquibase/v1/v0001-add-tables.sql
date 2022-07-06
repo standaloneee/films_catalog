@@ -1,7 +1,7 @@
 CREATE TABLE "biba"
 (
     "id" uuid primary key,
-    "bibaName" varchar(255),
+    "biba_name" varchar(255),
     "age" int,
     "woman" bool
 

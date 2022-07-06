@@ -1,28 +1,12 @@
 package ru.standalone.films_catalog.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.standalone.films_catalog.dto.AbobaDto;
-import ru.standalone.films_catalog.dto.BibaDto;
+import ru.standalone.films_catalog.entity.Biba;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Repository
-public class BibaRepository {
-    private List<BibaDto> bibList;
+public interface BibaRepository extends JpaRepository<Biba, UUID> {
 
-    public BibaRepository(){
-        bibList = new ArrayList<>();
-    }
-
-    public List<BibaDto> getBibList(){
-        return bibList;
-    }
-
-    public void addBiba(BibaDto newBib){
-        bibList.add(newBib);
-    }
-    public List<BibaDto> returnBiba(){
-        return bibList;
-    }
 }

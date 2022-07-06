@@ -1,12 +1,20 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.1'
+	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
+ext {
+	lombok                  = '1.18.22'
+	openApi                 = '1.6.8'
+	jjwt                    = '0.9.1'
+	mapstruct               = '1.4.2.Final'
+}
+
 group = 'ru.standalone'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+version = '1.0'
+targetCompatibility = sourceCompatibility = '11'
+defaultTasks 'clean', 'build'
 
 configurations {
 	compileOnly {
@@ -16,19 +24,30 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.data:spring-data-jpa:2.7.1'
-//	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.1'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.postgresql:postgresql:42.4.0'
-	implementation 'org.liquibase:liquibase-core:4.12.0'
+	// Lombok
+	compileOnly "org.projectlombok:lombok:$lombok"
+	annotationProcessor "org.projectlombok:lombok:$lombok"
+
+	// Spring & Spring Cloud
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "org.springframework.boot:spring-boot-starter-web"
+
+
+	// Database
+	implementation 'org.postgresql:postgresql'
+	implementation 'org.liquibase:liquibase-core'
+
+
+
+
+	// Test
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
