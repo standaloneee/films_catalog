@@ -22,14 +22,14 @@ public class BibaController {
         bibish = biba;
     }
 
-    @PostMapping("sendBibas")
-    public String getBiba(@RequestBody Biba newBibaDto) {
+    @PostMapping("bibas")
+    public final String postBiba(@RequestBody Biba newBibaDto) {
 
         bibish.addBiba(newBibaDto);
         return "success";
     }
 
-    @GetMapping("getBibas")
+    @GetMapping("bibas")
     public List<Biba> returnAboba(){
         return bibish.returnBiba();
     }

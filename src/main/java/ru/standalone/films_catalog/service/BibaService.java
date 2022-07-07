@@ -18,9 +18,10 @@ public class BibaService {
         this.bibRep = bibRep;
     }
 
-    public void addBiba(Biba bibaDto){
+    public Biba addBiba(Biba bibaDto){
         bibaDto.setId(UUID.randomUUID());
         bibRep.save(bibaDto);
+        return bibaDto;
     }
     public List<Biba> returnBiba(){
         return bibRep.findAll();
