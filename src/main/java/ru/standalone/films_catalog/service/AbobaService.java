@@ -7,6 +7,7 @@ import ru.standalone.films_catalog.dto.AbobaDto;
 import ru.standalone.films_catalog.entity.Aboba;
 import ru.standalone.films_catalog.entity.Biba;
 import ru.standalone.films_catalog.repository.AbobaRepository;
+import ru.standalone.films_catalog.repository.BibaRepository;
 
 import java.util.List;
 import java.util.Locale;
@@ -18,9 +19,11 @@ import java.util.stream.Collectors;
 public class AbobaService {
 
     private AbobaRepository abbRep;
+    private BibaService bibaService;
 
-    public AbobaService(AbobaRepository abbRep) {
+    public AbobaService(AbobaRepository abbRep, BibaService bibaService) {
         this.abbRep = abbRep;
+        this.bibaService = bibaService;
     }
 
     public void addAboba(Aboba aboba) {
@@ -45,9 +48,9 @@ public class AbobaService {
     public List<Aboba> returnAbobaByName(String name) {
         return abbRep.findAbobasByName(name);
     }
-    public void addBibaToAboba(UUID id, Biba biba){
-        Aboba aboba = abbRep.findById(id).get();
-        aboba.addBibaToAboba(biba);
+    public void addBibaToAboba(UUID abobaID, UUID bibaID){
+        Aboba aboba = abbRep.findById(abobaID).get();
+        aboba.addBibaToAboba(bibaService.returnBibaById(bibaID));
         abbRep.save(aboba);
 
     }

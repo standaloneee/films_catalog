@@ -12,24 +12,21 @@ import java.util.UUID;
 @RestController
 public class AbobaController {
     private AbobaService abobaService;
-    private BibaService bibaService;
 
     public AbobaController(AbobaService abb, BibaService bab) {
         abobaService = abb;
-        bibaService = bab;
     }
 
     @PostMapping("abobas")
     public String postAboba(@RequestBody Aboba newAbobaDto) {
-
         abobaService.addAboba(newAbobaDto);
         return "success";
     }
-    @PostMapping("abobas/add/{id}")
+    @PostMapping("abobas/add/{id}/biba/{bibaID}")
     public String addBibaToAboba(@PathVariable(value = "id") UUID id,
-                                 @RequestBody Biba biba) {
-        biba = bibaService.addBiba(biba);
-        abobaService.addBibaToAboba(id, biba);
+                                 @PathVariable(value = "bibaID") UUID bibaID) {
+
+        abobaService.addBibaToAboba(id, bibaID);
         return "success";
     }
 

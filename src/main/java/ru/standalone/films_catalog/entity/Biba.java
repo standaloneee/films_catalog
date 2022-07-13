@@ -1,5 +1,6 @@
 package ru.standalone.films_catalog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,9 +32,11 @@ public class Biba{
     @Column(name = "woman")
     private boolean woman;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "aboba_id", referencedColumnName = "id")
-    private Aboba aboba;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//
+//   @JoinColumn(name = "aboba_id", referencedColumnName = "id")
+//    @JsonIgnore
+//    private Aboba aboba;
 
     @Override
     public boolean equals(Object o) {

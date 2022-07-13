@@ -31,8 +31,9 @@ public class Aboba{
     private int age;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(name = "biba",
+//            joinColumns = {@JoinColumn(name = "aboba_id")})
     @JoinColumn(name = "aboba_id")
-    @ToString.Exclude
     private List<Biba> bibaList = new ArrayList<>();
 
     public void addBibaToAboba(Biba biba) {

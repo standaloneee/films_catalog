@@ -1,10 +1,7 @@
 package ru.standalone.films_catalog.service;
 
 import org.springframework.stereotype.Service;
-import ru.standalone.films_catalog.dto.AbobaDto;
-import ru.standalone.films_catalog.dto.BibaDto;
 import ru.standalone.films_catalog.entity.Biba;
-import ru.standalone.films_catalog.repository.AbobaRepository;
 import ru.standalone.films_catalog.repository.BibaRepository;
 
 import java.util.List;
@@ -22,6 +19,9 @@ public class BibaService {
         bibaDto.setId(UUID.randomUUID());
         bibRep.save(bibaDto);
         return bibaDto;
+    }
+    public Biba returnBibaById(UUID id) {
+        return bibRep.findById(id).get();
     }
     public List<Biba> returnBiba(){
         return bibRep.findAll();
