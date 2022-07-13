@@ -22,6 +22,7 @@ public class AbobaController {
         abobaService.addAboba(newAbobaDto);
         return "success";
     }
+
     @PostMapping("abobas/add/{id}/biba/{bibaID}")
     public String addBibaToAboba(@PathVariable(value = "id") UUID id,
                                  @PathVariable(value = "bibaID") UUID bibaID) {
@@ -39,14 +40,17 @@ public class AbobaController {
     public void deleteAbobas() {
         abobaService.deleteAllAbobas();
     }
+
     @DeleteMapping("abobas/{id}")
     public void deleteAbobaById(@PathVariable(value = "id") UUID id){
         abobaService.deleteAbobaById(id);
     }
+
     @GetMapping("abobas/{id}")
     public Aboba returnAbobaById(@PathVariable(value = "id") UUID id){
         return abobaService.returnAbobaById(id);
     }
+
     @GetMapping("abobas/name/{name}")
     public List<Aboba> returnAbobaByName(@PathVariable(value = "name") String name){
         return abobaService.returnAbobaByName(name);

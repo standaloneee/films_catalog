@@ -1,17 +1,23 @@
 package ru.standalone.films_catalog.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -31,10 +37,8 @@ public class Aboba{
     private int age;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "biba",
-//            joinColumns = {@JoinColumn(name = "aboba_id")})
     @JoinColumn(name = "aboba_id")
-    private List<Biba> bibaList = new ArrayList<>();
+    private Set<Biba> bibaList = new HashSet<>();
 
     public void addBibaToAboba(Biba biba) {
         bibaList.add(biba);

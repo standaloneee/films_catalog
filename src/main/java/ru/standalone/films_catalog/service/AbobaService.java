@@ -35,12 +35,15 @@ public class AbobaService {
     public List<Aboba> returnAboba() {
         return abbRep.findAll();
     }
+
     public void deleteAllAbobas(){
         abbRep.deleteAll();
     }
+
     public void deleteAbobaById(UUID id){
         abbRep.deleteById(id);
     }
+
     public Aboba returnAbobaById(UUID id) {
         return abbRep.findById(id).get();
     }
@@ -48,10 +51,10 @@ public class AbobaService {
     public List<Aboba> returnAbobaByName(String name) {
         return abbRep.findAbobasByName(name);
     }
+
     public void addBibaToAboba(UUID abobaID, UUID bibaID){
         Aboba aboba = abbRep.findById(abobaID).get();
         aboba.addBibaToAboba(bibaService.returnBibaById(bibaID));
         abbRep.save(aboba);
-
     }
 }
